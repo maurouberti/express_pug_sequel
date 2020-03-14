@@ -1,0 +1,23 @@
+extends ./../layout/main
+
+block content
+    h1 #{msg}
+    
+    table(class="table table-responsive")
+        thead
+            tr
+                th #
+                th Nome
+                th Descrição
+                th Ação
+        tbody
+            each event in events
+                tr
+                    td= event.id
+                    td= event.name
+                    td= event.description
+                    td
+                        a(href="/events/" + event.id, class="btn btn-info") Consultar
+                        a(href="/events/edit/" + event.id, class="btn btn-info") Alterar
+                        form(style="display: inline-block", action="/events/" + event.id + "/?_method=DELETE", method="POST")
+                            button(type="submit", class="btn btn-danger") Excluir
